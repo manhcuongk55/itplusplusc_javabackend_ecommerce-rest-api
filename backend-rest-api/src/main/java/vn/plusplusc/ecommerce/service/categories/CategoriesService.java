@@ -12,8 +12,9 @@ import vn.plusplusc.ecommerce.database.model.Category;
 import java.util.List;
 
 /**
- * @author tungn
- */
+*
+* @author manhcuong
+*/
 public interface CategoriesService {
 
     Category saveOrUpdate(Category category);

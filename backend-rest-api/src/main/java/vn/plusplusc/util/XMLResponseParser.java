@@ -14,10 +14,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
 import vn.plusplusc.ecommerce.tracelogged.EventLogManager;
-
 /**
- *
- */
+*
+* @author manhcuong
+*/
 public class XMLResponseParser{
     
       

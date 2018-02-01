@@ -6,9 +6,9 @@ import java.util.List;
 import vn.plusplusc.ecommerce.database.model.OrderDetail;
 
 /**
- *
- * @author Louis Duong
- */
+*
+* @author manhcuong
+*/
 public interface OrderDetailService {
     public OrderDetail saveOrUpdate(OrderDetail orderDetail);
     public List<OrderDetail> getListOrderDetail(Long orderId);

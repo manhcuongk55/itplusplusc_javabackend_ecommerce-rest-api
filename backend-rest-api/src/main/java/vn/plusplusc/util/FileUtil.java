@@ -25,7 +25,9 @@ import org.apache.commons.io.FilenameUtils;
 import vn.plusplusc.ecommerce.tracelogged.EventLogManager;
 
 /**
- */
+*
+* @author manhcuong
+*/
 public class FileUtil {
     
     public static final int BUFFER_SIZE = 100 * 1024;

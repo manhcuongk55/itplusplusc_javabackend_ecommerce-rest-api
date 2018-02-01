@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import vn.plusplusc.ecommerce.database.model.Review;
 import vn.plusplusc.ecommerce.repository.ReviewRepository;
-
+/**
+*
+* @author manhcuong
+*/
 @Service
 public class ReviewService {
 

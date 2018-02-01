@@ -6,9 +6,9 @@ import java.util.List;
 import vn.plusplusc.ecommerce.database.model.OrderPayment;
 
 /**
- *
- * @author Louis Duong
- */
+*
+* @author manhcuong
+*/
 public interface OrderPaymentService {
     public OrderPayment getOrderPaymentByOrderId(Long orderId);
 }

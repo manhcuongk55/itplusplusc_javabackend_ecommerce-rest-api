@@ -15,10 +15,9 @@ import java.util.TimeZone;
 import org.joda.time.DateTimeZone;
 
 /**
- * 
- *
- * @author Hiromi Yasufuku
- */
+*
+* @author manhcuong
+*/
 public class DateUtil {
     
      public static final String _DATE_MAX = "9999-12-31 23:59:59";

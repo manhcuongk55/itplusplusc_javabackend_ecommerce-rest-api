@@ -5,7 +5,10 @@ import org.springframework.stereotype.Service;
 
 import vn.plusplusc.ecommerce.database.model.ProductAttributeDetail;
 import vn.plusplusc.ecommerce.repository.ProductAttributeDetailRepository;
-
+/**
+*
+* @author manhcuong
+*/
 @Service
 public class ProductAttributeDetailService {
 

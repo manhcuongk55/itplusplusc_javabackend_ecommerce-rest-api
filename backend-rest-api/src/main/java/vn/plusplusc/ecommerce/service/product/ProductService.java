@@ -13,9 +13,9 @@ import vn.plusplusc.ecommerce.database.model.ProductCategory;
 import vn.plusplusc.ecommerce.database.model.ProductCategoryId;
 
 /**
- *
- * @author acer
- */
+*
+* @author manhcuong
+*/
 public interface ProductService {
     //get all product
     Iterable<Product> findAllProduct();

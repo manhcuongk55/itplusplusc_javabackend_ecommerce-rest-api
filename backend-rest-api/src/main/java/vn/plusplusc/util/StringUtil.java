@@ -29,10 +29,9 @@ import vn.plusplusc.util.FileUtil;
 
 
 /**
- * Miscellaneous String processing methods.
- *
- * @author Yasufuku Hiromi
- */
+*
+* @author manhcuong
+*/
 public class StringUtil
 {
 

@@ -9,8 +9,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
- */
+*
+* @author manhcuong
+*/
 public class EmailUtil {
 
     public static boolean isEmailFormat(String valueToValidate) throws IOException{

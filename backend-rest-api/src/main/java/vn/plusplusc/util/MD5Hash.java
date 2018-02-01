@@ -2,7 +2,10 @@ package vn.plusplusc.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
+/**
+*
+* @author manhcuong
+*/
 public class MD5Hash {
 
     public static String MD5Encrypt(String value) throws NoSuchAlgorithmException {

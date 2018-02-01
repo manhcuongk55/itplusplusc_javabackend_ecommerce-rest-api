@@ -34,9 +34,9 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 /**
- *
- * @author johnny
- */
+*
+* @author manhcuong
+*/
 @Component
 public class AmazonS3Util {
 

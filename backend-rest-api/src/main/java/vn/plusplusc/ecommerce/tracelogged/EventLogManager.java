@@ -8,7 +8,10 @@ import org.apache.log4j.*;
  * @Class Name: EventLogManager.java
  * @brief: This class is implementation for managing event log.
  */
-
+/**
+*
+* @author manhcuong
+*/
 public class EventLogManager {
 
     private static EventLogManager instance = null;

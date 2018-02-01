@@ -10,9 +10,9 @@ import vn.plusplusc.ecommerce.repository.OrderDetailRepository;
 import vn.plusplusc.ecommerce.service.AbstractBaseService;
 
 /**
- *
- * @author Louis Duong
- */
+*
+* @author manhcuong
+*/
 @Component
 public class OrderDetailImpl extends AbstractBaseService implements OrderDetailService {
 

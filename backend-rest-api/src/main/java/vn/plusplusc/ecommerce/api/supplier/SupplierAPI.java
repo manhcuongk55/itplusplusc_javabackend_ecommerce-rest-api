@@ -42,7 +42,6 @@ import org.springframework.web.bind.annotation.RestController;
 */
 @Api(value = "suppliers")
 @RestController
-@RequestMapping(APIName.SUPPLIERS)
 public class SupplierAPI extends AbstractBaseController {
 
 	@Autowired
@@ -56,9 +55,21 @@ public class SupplierAPI extends AbstractBaseController {
 	@Autowired
 	private CategoryRepository categoryRepository;
 
+
+	@ApiOperation(value = "get Suppliers", notes = "")
+	@RequestMapping(path = APIName.SUPPLIERS, method = RequestMethod.GET, produces = APIName.CHARSET)
+	public ResponseEntity<APIResponse> getAllSuppliersCompanyId(@RequestParam(required = false, defaultValue = Constant.DEFAULT_PAGE_NUMBER) Integer pageNumber,
+			@RequestParam(required = false, defaultValue = Constant.DEFAULT_PAGE_SIZE) Integer pageSize) {
+
+		Page<Supplier> suppliers = supplierService.findAllSuppliers(pageNumber, pageSize);
+		// statusResponse = new StatusResponse(APIStatus.OK.getCode(),
+		// Suppliers.getContent(), Suppliers.getTotalElements());
+		return responseUtil.successResponse(suppliers.getContent());
+	}
+
 	@ApiOperation(value = "get Supplier by company id", notes = "")
-	@RequestMapping(method = RequestMethod.GET, produces = APIName.CHARSET)
-	public ResponseEntity<APIResponse> getAllSuppliers(@PathVariable("company_id") Long company_id,
+	@RequestMapping(path = APIName.SUPPLIER_COMPANYID, method = RequestMethod.GET, produces = APIName.CHARSET)
+	public ResponseEntity<APIResponse> getAllSuppliersCompanyId(@PathVariable("company_id") Long company_id,
 			@RequestParam(required = false, defaultValue = Constant.DEFAULT_PAGE_NUMBER) Integer pageNumber,
 			@RequestParam(required = false, defaultValue = Constant.DEFAULT_PAGE_SIZE) Integer pageSize) {
 

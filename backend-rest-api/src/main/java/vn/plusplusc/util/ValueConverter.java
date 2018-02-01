@@ -6,9 +6,9 @@
 package vn.plusplusc.util;
 
 /**
- *
- * @author VS9 X64Bit
- */
+*
+* @author manhcuong
+*/
 public class ValueConverter {
 
     public static int convertStringToInt(String strVal, int defaultVal) {

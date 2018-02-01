@@ -16,7 +16,10 @@ import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.util.HtmlUtils;
 
 
-
+/**
+*
+* @author manhcuong
+*/
 public class SecurityFilter extends DelegatingFilterProxy {
 
     static class FilteredRequest extends HttpServletRequestWrapper {

@@ -11,7 +11,10 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
+/**
+*
+* @author manhcuong
+*/
 @Component
 public class CorsFilter implements Filter {
 

@@ -12,9 +12,9 @@ import vn.plusplusc.ecommerce.database.model.Company;
 public interface CompanyRepository extends CrudRepository<Company, Integer> {
 
     @Query("SELECT c FROM Company c")
-    Iterable<Company> findAll(long companyId);
+    Iterable<Company> findAll(Long companyId);
 
-    @Query("SELECT c FROM Company c WHERE c.companyId = :companyId")
-    Company findByCompanyId(@Param("companyId") long companyId);
+    @Query("SELECT c FROM Company c WHERE c.company_id = :company_id")
+    Company findByCompanyId(@Param("company_id") Long company_id);
     
 }

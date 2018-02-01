@@ -10,11 +10,10 @@ package vn.plusplusc.ecommerce.service;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 /**
- *
- * @author Quy Duong
- */
+*
+* @author manhcuong
+*/
 public abstract class AbstractBaseService {
     protected final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
     

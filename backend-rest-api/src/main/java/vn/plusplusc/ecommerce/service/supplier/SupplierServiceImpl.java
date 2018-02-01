@@ -11,7 +11,10 @@ import vn.plusplusc.ecommerce.database.model.SupplierCategory;
 import vn.plusplusc.ecommerce.database.model.SupplierCategoryId;
 import vn.plusplusc.ecommerce.repository.SupplierRepository;
 import vn.plusplusc.ecommerce.repository.specification.SupplierSpecification;
-
+/**
+*
+* @author manhcuong
+*/
 @Service
 public class SupplierServiceImpl implements SupplierService {
 
@@ -23,7 +26,7 @@ public class SupplierServiceImpl implements SupplierService {
     public Iterable<Supplier> findAllSupplier() {
         return SupplierRepository.findAll();
     }
-
+   
     @Override
     public Supplier getSupplierById(long companyId, long SupplierId) {
         return SupplierRepository.findOne(SupplierId);
@@ -76,4 +79,9 @@ public class SupplierServiceImpl implements SupplierService {
     public void deleteSupplierCategory(SupplierCategory Supplier) {
 //        SupplierRepository.deleteSupplierCategory(Supplier.getSupplierId());
     }
+
+	@Override
+	public Page<Supplier> findAllSuppliers(int pageNumber, int pageSize) {
+		return SupplierRepository.findAll(new PageRequest(pageNumber, pageSize));
+	}
 }

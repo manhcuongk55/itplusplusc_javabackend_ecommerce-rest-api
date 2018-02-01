@@ -1,10 +1,9 @@
 package vn.plusplusc.util;
 
 /**
- * @Class Name: Constant.java
- *
- * @brief: Define constant
- */
+*
+* @author manhcuong
+*/
 public class Constant {
 
     // API FOMAT DATE

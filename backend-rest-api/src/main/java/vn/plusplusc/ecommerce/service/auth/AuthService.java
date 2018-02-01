@@ -10,9 +10,9 @@ package vn.plusplusc.ecommerce.service.auth;
 import vn.plusplusc.ecommerce.database.model.User;
 import vn.plusplusc.ecommerce.database.model.UserToken;
 /**
- *
- * @author manhcuong
- */
+*
+* @author manhcuong
+*/
  
 public interface AuthService {
     

@@ -17,9 +17,9 @@ import java.util.Properties;
 import java.util.StringTokenizer;
 
 /**
- *
- * @author vkloan
- */
+*
+* @author manhcuong
+*/
 public class MimeTypeUtils {
 
     private static final Map<String, String> mimeTypeToExtensionMap;

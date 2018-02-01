@@ -6,7 +6,10 @@
  * with the terms of the license agreement you entered into with NIT-Software.
  */
 package vn.plusplusc.ecommerce;
-
+/**
+*
+* @author manhcuong
+*/
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

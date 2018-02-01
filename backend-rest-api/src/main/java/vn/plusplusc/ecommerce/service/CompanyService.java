@@ -5,7 +5,10 @@ import org.springframework.stereotype.Service;
 
 import vn.plusplusc.ecommerce.database.model.Company;
 import vn.plusplusc.ecommerce.repository.CompanyRepository;
-
+/**
+*
+* @author manhcuong
+*/
 @Service
 public class CompanyService {
 
@@ -16,7 +19,7 @@ public class CompanyService {
         return companyRepository.findAll();
     }
 
-    public Company findByCompanyId(long companyId) {
+    public Company findByCompanyId(Long companyId) {
         return companyRepository.findByCompanyId(companyId);
     }
 }

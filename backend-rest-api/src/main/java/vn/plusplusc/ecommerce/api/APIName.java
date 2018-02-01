@@ -32,7 +32,8 @@ public class APIName {
     public static final String PRODUCTS_DELETE = "/delete";
     public static final String PRODUCTS_UPDATE = "/update";
     // supplier api links
-    public static final String SUPPLIERS = VERSION + "/suppliers";
+    public static final String SUPPLIERS ="/suppliers";
+    public static final String SUPPLIER_COMPANYID = VERSION + "/suppliers";
     public static final String SUPPLIER_BY_CATEGORY = "/category";
     public static final String SUPPLIER_BY_ID = "/detail/{supplier_id}";
     public static final String SUPPLIER_BY_IDS = "/list";
@@ -44,11 +45,12 @@ public class APIName {
     public static final String SUPPLIER_UPDATE = "/update";
     // category api links
     public static final String CATEGORIES = VERSION + "/categories";
+    public static final String CATEGORIES_BY_SUPPLIER_ID = VERSION + "/categories/{supplier_id}";
     public static final String CATEGORIES_ID = VERSION + "/categories/{id}";
 
     //company api link
-    public static final String COMPANIES = VERSION + "/companies";
-    public static final String COMPANIES_SEARCH_BY_ID = COMPANIES + "/{id}";
+    public static final String COMPANIES ="/companies";
+    public static final String COMPANIES_SEARCH_BY_ID = COMPANIES + "/{company_id}";
 
     //user api link
     public static final String USERS = VERSION + "/users";
@@ -87,6 +89,13 @@ public class APIName {
     public static final String CATEGORIES_DETAIL = "/detail/{category_id}";
     public static final String CATEGORIES_LIST = "/list";
     
+    // Types APIs
+    public static final String TYPES_API ="/types";
+    public static final String TYPES_ADD = "/create";
+    public static final String TYPES_UPDATE = "/update";
+    public static final String TYPES_DELETE = "/delete";
+    public static final String TYPES_DETAIL = "/detail/{type_id}";
+    public static final String TYPES_LIST = "/list";
     
     // Upload file API
     public static final String UPLOAD_API = VERSION + "/upload";

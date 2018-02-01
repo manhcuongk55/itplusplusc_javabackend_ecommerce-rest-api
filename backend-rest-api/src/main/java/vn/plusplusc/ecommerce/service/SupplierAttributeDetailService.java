@@ -5,7 +5,10 @@ import org.springframework.stereotype.Service;
 
 import vn.plusplusc.ecommerce.database.model.SupplierAttributeDetail;
 import vn.plusplusc.ecommerce.repository.SupplierAttributeDetailRepository;
-
+/**
+*
+* @author manhcuong
+*/
 @Service
 public class SupplierAttributeDetailService {
 

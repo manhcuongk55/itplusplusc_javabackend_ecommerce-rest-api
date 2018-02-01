@@ -14,11 +14,13 @@ import vn.plusplusc.ecommerce.database.model.SupplierCategoryId;
 
 /**
  *
- * @author acer
+ * @author manhcuong
  */
 public interface SupplierService {
 	// get all Supplier
 	Iterable<Supplier> findAllSupplier();
+
+	Page<Supplier> findAllSuppliers(int pageNumber, int pageSize);
 
 	// get Supplier by id
 	Supplier getSupplierById(long companyId, long SupplierId);
@@ -32,8 +34,9 @@ public interface SupplierService {
 	Page<Supplier> getByCompanyIdAndCategoryId(long companyId, long categoryId, int pageNumber, int pageSize);
 
 	// get filter
-	Page<Supplier> doFilterSearchSortPagingSupplier(long comId, long catId, long attrId, String searchKey, double mnPrice,
-			double mxPrice, int minRank, int maxRank, int sortKey, boolean isAscSort, int pSize, int pNumber);
+	Page<Supplier> doFilterSearchSortPagingSupplier(long comId, long catId, long attrId, String searchKey,
+			double mnPrice, double mxPrice, int minRank, int maxRank, int sortKey, boolean isAscSort, int pSize,
+			int pNumber);
 
 	// get list Supplier by id
 	Iterable<Supplier> getSuppliersById(long companyId, List<Long> SupplierIds);

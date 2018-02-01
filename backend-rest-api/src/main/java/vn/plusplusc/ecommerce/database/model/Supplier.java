@@ -67,6 +67,23 @@ public class Supplier implements Serializable {
 	@Basic(optional = false)
 	@Column(name = "address")
 	private String address;
+	
+	@Basic(optional = false)
+	@Column(name = "image")
+	private String image;
+
+	@Basic(optional = false)
+	@Column(name = "type_id")
+	private Long type_id;
+	
+	
+	public Long getType_id() {
+		return type_id;
+	}
+
+	public void setType_id(Long type_id) {
+		this.type_id = type_id;
+	}
 
 	public Long getSupplierId() {
 		return supplierId;
@@ -122,6 +139,14 @@ public class Supplier implements Serializable {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 	

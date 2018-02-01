@@ -4,11 +4,10 @@ import org.springframework.stereotype.Component;
 
 import vn.plusplusc.ecommerce.database.model.OrderPayment;
 import vn.plusplusc.ecommerce.service.AbstractBaseService;
-
 /**
- *
- * @author Louis Duong
- */
+*
+* @author manhcuong
+*/
 @Component
 public class OrderPaymentImpl extends AbstractBaseService implements OrderPaymentService {
 

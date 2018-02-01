@@ -8,9 +8,9 @@ import java.util.Random;
 import java.util.UUID;
 
 /**
- * 128 bit UUID (Universal Unique ID) 
- *
- */
+*
+* @author manhcuong
+*/
 
 public class UniqueID
 {
