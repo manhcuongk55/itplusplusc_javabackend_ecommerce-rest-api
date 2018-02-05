@@ -30,7 +30,6 @@ public class Constant {
     public static final int LAST3MONTHS_CODE = 3;
     public static final int LAST6MONTHS_CODE = 4;
     public static final int LASTYEAR_CODE = 5;
-
     public static enum STATUS {
         ACTIVE_STATUS(0, "Active"),
         DELETED_STATUS(1, "Deleted"),

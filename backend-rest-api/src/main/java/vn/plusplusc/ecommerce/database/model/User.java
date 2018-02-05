@@ -20,10 +20,11 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 /**
-*
-* @author manhcuong
-*/
+ *
+ * @author manhcuong
+ */
 @Entity
 @Getter
 @Setter
@@ -36,53 +37,59 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @XmlRootElement
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    
-    @Id
-    @Basic(optional = false)
-    @Column(name = "user_id")
-    private String userId;
-    
-    @Basic(optional = false)
-    @Column(name = "company_id")
-    private Long companyId;
-    
-    @Basic(optional = false)
-    @Column(name = "role_id")
-    private int roleId;
-    
-    @Basic(optional = false)
-    @Column(name = "email")
-    private String email;
-    
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Basic(optional = false)
-    @Column(name = "password_hash")
-    private String passwordHash;
-    
-    @Column(name = "first_name")
-    private String firstName;
-    
-    @Column(name = "middle_name")
-    private String middleName;
-    
-    @Column(name = "last_name")
-    private String lastName;
-    
-    @Basic(optional = false)
-    @Column(name = "status")
-    private int status;
-    
-    @JsonIgnore
-    @Basic(optional = false)
-    @Column(name = "create_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createDate;
-    
-    @JsonIgnore
-    @Basic(optional = false)
-    @Column(name = "salt")
-    private String salt;
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Basic(optional = false)
+	@Column(name = "user_id")
+	private String userId;
+
+	@Basic(optional = false)
+	@Column(name = "company_id")
+	private Long companyId;
+
+	@Basic(optional = false)
+	@Column(name = "role_id")
+	private int roleId;
+
+	@Basic(optional = false)
+	@Column(name = "email")
+	private String email;
+
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	@Basic(optional = false)
+	@Column(name = "password_hash")
+	private String passwordHash;
+
+	@Column(name = "first_name")
+	private String firstName;
+
+	@Column(name = "middle_name")
+	private String middleName;
+
+	@Column(name = "last_name")
+	private String lastName;
+
+	@Column(name = "google_id")
+	private String google_id;
+	
+	@Column(name = "face_id")
+	private String face_id;
+	
+	@Basic(optional = false)
+	@Column(name = "status")
+	private int status;
+
+	@JsonIgnore
+	@Basic(optional = false)
+	@Column(name = "create_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createDate;
+
+	@JsonIgnore
+	@Basic(optional = false)
+	@Column(name = "salt")
+	private String salt;
 
 	public String getUserId() {
 		return userId;
@@ -171,5 +178,5 @@ public class User implements Serializable {
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
-    
+
 }

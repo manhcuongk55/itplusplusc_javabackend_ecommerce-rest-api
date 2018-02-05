@@ -42,10 +42,11 @@ import vn.plusplusc.util.Constant;
 import vn.plusplusc.util.DateUtil;
 import vn.plusplusc.util.MD5Hash;
 import vn.plusplusc.util.UniqueID;
+
 /**
-*
-* @author manhcuong
-*/
+ *
+ * @author manhcuong
+ */
 @RestController
 @RequestMapping(APIName.USERS)
 public class UserAPI extends AbstractBaseController {
@@ -62,40 +63,76 @@ public class UserAPI extends AbstractBaseController {
 	@RequestMapping(value = APIName.USERS_LOGIN, method = RequestMethod.POST, produces = APIName.CHARSET)
 	public ResponseEntity<APIResponse> login(@PathVariable Long company_id,
 			@RequestBody AuthRequestModel authRequestModel) {
-
-		if ("".equals(authRequestModel.getUsername()) || "".equals(authRequestModel.getPassword())) {
-			// invalid paramaters
-			throw new ApplicationException(APIStatus.INVALID_PARAMETER);
-		} else {
-			User userLogin = userService.getUserByEmail(authRequestModel.getUsername(), company_id,
-					Constant.USER_STATUS.ACTIVE.getStatus());
-
-			if (userLogin != null) {
-				String passwordHash = null;
-				try {
-					passwordHash = MD5Hash.MD5Encrypt(authRequestModel.getPassword() + userLogin.getSalt());
-				} catch (NoSuchAlgorithmException ex) {
-					throw new RuntimeException("User login encrypt password error", ex);
-				}
-
-				if (passwordHash.equals(userLogin.getPasswordHash())) {
-					UserToken userToken = authService.createUserToken(userLogin, authRequestModel.isKeepMeLogin());
-					// Create Auth User -> Set to filter config
-					// Perform the security
-					Authentication authentication = new UsernamePasswordAuthenticationToken(userLogin.getEmail(),
-							userLogin.getPasswordHash());
-					// final Authentication authentication =
-					// authenticationManager.authenticate();
-					SecurityContextHolder.getContext().setAuthentication(authentication);
-					return responseUtil.successResponse(userToken.getToken());
-				} else {
-					// wrong password
-					throw new ApplicationException(APIStatus.ERR_USER_NOT_VALID);
-				}
-
-			} else {
-				// can't find user by email address in database
+		int type = authRequestModel.getType();
+		if (type == 0) {
+			String google_id = authRequestModel.getPassword();
+            User googler = userService.findUserByGoogleId(google_id);
+            if(googler != null){
+            	UserToken userToken = authService.createUserToken(googler, authRequestModel.isKeepMeLogin());
+				// Create Auth User -> Set to filter config
+				// Perform the security
+				Authentication authentication = new UsernamePasswordAuthenticationToken(googler.getEmail(),
+						google_id);
+				// final Authentication authentication =
+				// authenticationManager.authenticate();
+				SecurityContextHolder.getContext().setAuthentication(authentication);
+				return responseUtil.successResponse(userToken.getToken());
+            } else {
+				// wrong password
 				throw new ApplicationException(APIStatus.ERR_USER_NOT_EXIST);
+			}
+		}else if(type == 1){
+			String face_id = authRequestModel.getPassword();
+			User  facebooker = userService.findUserByFaceId(face_id);
+			if(facebooker != null){
+            	UserToken userToken = authService.createUserToken(facebooker, authRequestModel.isKeepMeLogin());
+				// Create Auth User -> Set to filter config
+				// Perform the security
+				Authentication authentication = new UsernamePasswordAuthenticationToken(facebooker.getEmail(),
+						face_id);
+				// final Authentication authentication =
+				// authenticationManager.authenticate();
+				SecurityContextHolder.getContext().setAuthentication(authentication);
+				return responseUtil.successResponse(userToken.getToken());
+            }else {
+				// wrong password
+				throw new ApplicationException(APIStatus.ERR_USER_NOT_EXIST);
+			}
+		}else {
+			if ("".equals(authRequestModel.getUsername()) || "".equals(authRequestModel.getPassword())) {
+				// invalid paramaters
+				throw new ApplicationException(APIStatus.INVALID_PARAMETER);
+			} else {
+				User userLogin = userService.getUserByEmail(authRequestModel.getUsername(), company_id,
+						Constant.USER_STATUS.ACTIVE.getStatus());
+
+				if (userLogin != null) {
+					String passwordHash = null;
+					try {
+						passwordHash = MD5Hash.MD5Encrypt(authRequestModel.getPassword() + userLogin.getSalt());
+					} catch (NoSuchAlgorithmException ex) {
+						throw new RuntimeException("User login encrypt password error", ex);
+					}
+
+					if (passwordHash.equals(userLogin.getPasswordHash())) {
+						UserToken userToken = authService.createUserToken(userLogin, authRequestModel.isKeepMeLogin());
+						// Create Auth User -> Set to filter config
+						// Perform the security
+						Authentication authentication = new UsernamePasswordAuthenticationToken(userLogin.getEmail(),
+								userLogin.getPasswordHash());
+						// final Authentication authentication =
+						// authenticationManager.authenticate();
+						SecurityContextHolder.getContext().setAuthentication(authentication);
+						return responseUtil.successResponse(userToken.getToken());
+					} else {
+						// wrong password
+						throw new ApplicationException(APIStatus.ERR_USER_NOT_VALID);
+					}
+
+				} else {
+					// can't find user by email address in database
+					throw new ApplicationException(APIStatus.ERR_USER_NOT_EXIST);
+				}
 			}
 		}
 	}

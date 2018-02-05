@@ -23,6 +23,7 @@ public class AuthRequestModel {
     public String username;
     public String password;
     public boolean keepMeLogin;
+    public int type ;
 	public String getUsername() {
 		return username;
 	}
@@ -40,6 +41,12 @@ public class AuthRequestModel {
 	}
 	public void setKeepMeLogin(boolean keepMeLogin) {
 		this.keepMeLogin = keepMeLogin;
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
 	}
     
 }
