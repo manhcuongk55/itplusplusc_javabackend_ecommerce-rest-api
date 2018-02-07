@@ -12,6 +12,8 @@ import vn.plusplusc.ecommerce.database.model.Category;
 import vn.plusplusc.ecommerce.database.model.Type;
 import vn.plusplusc.ecommerce.repository.CategoryRepository;
 import vn.plusplusc.ecommerce.repository.TypeRepository;
+import vn.plusplusc.ecommerce.service.UserService;
+import vn.plusplusc.ecommerce.service.type.TypeService;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,18 +33,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Api(value = "type API")
 public class TypeAPI extends AbstractBaseAPI {
-	
+
 	@Autowired
-    protected ResponseUtil responseUtil;
-    @Autowired
-    TypeRepository repository;
+	protected ResponseUtil responseUtil;
 
-    @ApiOperation(value = "getTypes")
-    @RequestMapping(value = APIName.TYPES_API, method = RequestMethod.GET, produces = APIName.CHARSET)
-    public ResponseEntity<APIResponse> getTypes() {
+	@Autowired
+	private TypeService typeService;
 
-        List<Type> types = (List<Type>) repository.findAll();
-        return responseUtil.successResponse(types);
+	@ApiOperation(value = "getTypes")
+	@RequestMapping(value = APIName.TYPES_API, method = RequestMethod.GET, produces = APIName.CHARSET)
+	public ResponseEntity<APIResponse> getTypes() {
 
-    }
+		List<Type> types = (List<Type>) typeService.getAllTypes();
+		return responseUtil.successResponse(types);
+
+	}
+	
+	@ApiOperation(value = "getTypesById")
+	@RequestMapping(value = APIName.TYPES_DETAIL, method = RequestMethod.GET, produces = APIName.CHARSET)
+	public ResponseEntity<APIResponse> getTypesById(@PathVariable Long type_id) {
+		Type types = typeService.getTypeById(type_id);
+		return responseUtil.successResponse(types);
+
+	}
+	
 }

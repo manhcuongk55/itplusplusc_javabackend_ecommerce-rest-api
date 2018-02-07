@@ -34,17 +34,17 @@ public class APIName {
 	public static final String PRODUCTS_DELETE = "/delete";
 	public static final String PRODUCTS_UPDATE = "/update";
 	// supplier api links
-	public static final String SUPPLIERS = VERSION_SUPPLIER + "/suppliers";
+	public static final String SUPPLIERS = "/suppliers";
 	public static final String SUPPLIER_COMPANYID = VERSION + "/suppliers";
-	public static final String SUPPLIER_BY_CATEGORY = "/category";
-	public static final String SUPPLIER_BY_ID = "/detail/{supplier_id}";
-	public static final String SUPPLIER_BY_IDS = "/list";
-	public static final String SUPPLIER_FILTER_LIST = "/filter";
-	public static final String SUPPLIER_DETAILS = "/supplierdetails/{supplier_id}";
-	public static final String SUPPLIER_ATTRIBUTES = VERSION + "/supplierattributes";
-	public static final String SUPPLIER_CREATE = "/create";
-	public static final String SUPPLIER_DELETE = "/delete";
-	public static final String SUPPLIER_UPDATE = "/update";
+	public static final String SUPPLIER_BY_CATEGORY = SUPPLIERS + "/category";
+	public static final String SUPPLIER_BY_ID = SUPPLIER_COMPANYID + "/detail/{supplier_id}";
+	public static final String SUPPLIER_BY_IDS = SUPPLIER_COMPANYID + "/list";
+	public static final String SUPPLIER_FILTER_LIST = SUPPLIER_COMPANYID + "/filter";
+	public static final String SUPPLIER_DETAILS = SUPPLIER_COMPANYID + "/supplierdetails/{supplier_id}";
+	public static final String SUPPLIER_ATTRIBUTES = SUPPLIER_COMPANYID + "/supplierattributes";
+	public static final String SUPPLIER_CREATE = SUPPLIER_COMPANYID + "/create";
+	public static final String SUPPLIER_DELETE = SUPPLIER_COMPANYID + "/delete";
+	public static final String SUPPLIER_UPDATE = SUPPLIER_COMPANYID + "/update";
 	// category api links
 	public static final String CATEGORIES = VERSION + "/categories";
 	public static final String CATEGORIES_BY_SUPPLIER_ID = VERSION + "/categories/{supplier_id}";
@@ -92,12 +92,12 @@ public class APIName {
 	public static final String CATEGORIES_LIST = "/list";
 
 	// Types APIs
-	public static final String TYPES_API = "/types";
-	public static final String TYPES_ADD = "/create";
-	public static final String TYPES_UPDATE = "/update";
-	public static final String TYPES_DELETE = "/delete";
-	public static final String TYPES_DETAIL = "/detail/{type_id}";
-	public static final String TYPES_LIST = "/list";
+	public static final String TYPES_API = VERSION + "/types";
+	public static final String TYPES_ADD = TYPES_API + "/create";
+	public static final String TYPES_UPDATE = TYPES_API + "/update";
+	public static final String TYPES_DELETE = TYPES_API + "/delete";
+	public static final String TYPES_DETAIL = TYPES_API + "/detail/{type_id}";
+	public static final String TYPES_LIST = TYPES_API + "/list";
 
 	// Upload file API
 	public static final String UPLOAD_API = VERSION + "/upload";

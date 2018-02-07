@@ -58,7 +58,7 @@ public class SupplierAPI extends AbstractBaseController {
 
 	@ApiOperation(value = "get Suppliers", notes = "")
 	@RequestMapping(path = APIName.SUPPLIERS, method = RequestMethod.GET, produces = APIName.CHARSET)
-	public ResponseEntity<APIResponse> getAllSuppliersCompanyId(@RequestParam(required = false, defaultValue = Constant.DEFAULT_PAGE_NUMBER) Integer pageNumber,
+	public ResponseEntity<APIResponse> getAllSuppliers(@RequestParam(required = false, defaultValue = Constant.DEFAULT_PAGE_NUMBER) Integer pageNumber,
 			@RequestParam(required = false, defaultValue = Constant.DEFAULT_PAGE_SIZE) Integer pageSize) {
 
 		Page<Supplier> suppliers = supplierService.findAllSuppliers(pageNumber, pageSize);
@@ -92,7 +92,7 @@ public class SupplierAPI extends AbstractBaseController {
 			// SupplierAttributeDetail pad =
 			// SupplierAttributeService.findBySupplierIdAndAttributeId(Supplier_Id,
 			// Constant.Supplier_ATTRIBUTE.DETAIL_IMAGES.getId());
-			List<SupplierCategory> listSupplierCate = supplierCategoryRepository.getProCateBySupplierId(supplier_id);
+			/*List<SupplierCategory> listSupplierCate = supplierCategoryRepository.getProCateBySupplierId(supplier_id);
 			List<Map<String, Object>> listCate = new ArrayList<Map<String, Object>>();
 			for (SupplierCategory result : listSupplierCate) {
 				Map<String, Object> category = new HashMap();
@@ -107,9 +107,9 @@ public class SupplierAPI extends AbstractBaseController {
 			}
 			Map<String, Object> result = new HashMap();
 			result.put("supplier", p);
-			result.put("list_category", listCate);
+			result.put("list_category", listCate);*/
 
-			return responseUtil.successResponse(result);
+			return responseUtil.successResponse(p);
 		} else {
 			throw new ApplicationException(APIStatus.GET_SUPPLIER_ERROR);
 		}

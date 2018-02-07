@@ -45,35 +45,35 @@ public class Supplier implements Serializable {
 	private Long supplierId;
 
 	@Basic(optional = false)
-	@Column(name = "company_id")
+	@Column(name = "company_id",nullable=false)
 	private Long companyId;
 
 	@Basic(optional = false)
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "description")
+	@Column(name = "description",nullable=false)
 	private String description;
 
 	@Basic(optional = false)
-	@Column(name = "status")
+	@Column(name = "status",nullable=false)
 	private int status;
 
 	@Basic(optional = false)
-	@Column(name = "create_date")
+	@Column(name = "create_date",nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createDate;
 	
 	@Basic(optional = false)
-	@Column(name = "address")
+	@Column(name = "address",nullable=false)
 	private String address;
 	
 	@Basic(optional = false)
-	@Column(name = "image")
+	@Column(name = "image",nullable=false)
 	private String image;
 
 	@Basic(optional = false)
-	@Column(name = "type_id")
+	@Column(name = "type_id",nullable=false)
 	private Long type_id;
 	
 	
