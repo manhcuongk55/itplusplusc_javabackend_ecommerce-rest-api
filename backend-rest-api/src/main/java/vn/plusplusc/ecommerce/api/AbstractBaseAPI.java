@@ -30,91 +30,89 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  */
 /**
-*
-* @author manhcuong
-*/
+ *
+ * @author manhcuong
+ */
 public abstract class AbstractBaseAPI {
-    
-    @Autowired
-    private CustomUserAuthService userDetailsService;
 
-    //
-    // Build setting for Gson class accept NULL value
-    //
-    Gson gson = new GsonBuilder().serializeNulls().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-            .setDateFormat(Constant.API_FORMAT_DATE).create();
+	@Autowired
+	private CustomUserAuthService userDetailsService;
 
-    // Mapper object is used to convert object and etc...
-    public final static ObjectMapper mapper = new ObjectMapper();
+	//
+	// Build setting for Gson class accept NULL value
+	//
+	Gson gson = new GsonBuilder().serializeNulls().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+			.setDateFormat(Constant.API_FORMAT_DATE).create();
 
-    
+	// Mapper object is used to convert object and etc...
+	public final static ObjectMapper mapper = new ObjectMapper();
 
-    static {
-        mapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES)
-                .setSerializationInclusion(JsonInclude.Include.ALWAYS)
-                .setDateFormat(new SimpleDateFormat(Constant.API_FORMAT_DATE));
-    }
+	static {
+		mapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES)
+				.setSerializationInclusion(JsonInclude.Include.ALWAYS)
+				.setDateFormat(new SimpleDateFormat(Constant.API_FORMAT_DATE));
+	}
 
-    @Autowired
-    AppConfig appConfig;
+	@Autowired
+	AppConfig appConfig;
 
-    //
-    // Create logger
-    //
-    public final static EventLogManager logger = EventLogManager.getInstance();
+	//
+	// Create logger
+	//
+	public final static EventLogManager logger = EventLogManager.getInstance();
 
-    //
-    // Write object as string using mapper
-    //
-    protected String writeObjectToJson(Object obj) {
-        try {
+	//
+	// Write object as string using mapper
+	//
+	protected String writeObjectToJson(Object obj) {
+		try {
 
-            return mapper.writeValueAsString(obj);
+			return mapper.writeValueAsString(obj);
 
-        } catch (JsonProcessingException ex) {
-            // Throw our exception
-            throw new ApplicationException(ex.getCause());
-        }
-    }
+		} catch (JsonProcessingException ex) {
+			// Throw our exception
+			throw new ApplicationException(ex.getCause());
+		}
+	}
 
-    protected String writeObjectToJsonRemoveNullProperty(Object obj) throws ApplicationException
-    {    
-         try {
-             // Set setting remove NULL property
-             mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-             // map json
-             String result=mapper.writeValueAsString(obj);
-             // Reset default setting
-             mapper.setSerializationInclusion(JsonInclude.Include.ALWAYS);
-             return  result;
+	protected String writeObjectToJsonRemoveNullProperty(Object obj) throws ApplicationException {
+		try {
+			// Set setting remove NULL property
+			mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+			// map json
+			String result = mapper.writeValueAsString(obj);
+			// Reset default setting
+			mapper.setSerializationInclusion(JsonInclude.Include.ALWAYS);
+			return result;
 
-        } catch (JsonProcessingException ex) {
-            // Throw our exception
-            throw new ApplicationException(ex.getCause());
-        }        
-    }
-    
-    //
-    // Reponse status
-    //
-    public StatusResponse statusResponse = null;
+		} catch (JsonProcessingException ex) {
+			// Throw our exception
+			throw new ApplicationException(ex.getCause());
+		}
+	}
 
-    // get current user authenticated
-//    public User getcurrentUser() {
-////        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-////        String authToken = request.getParameter("auth_token");
-////        User currentUser = null;//userSessionDao.getUserBySessionID(authToken);
-////        if (currentUser == null) {
-////            throw new ApplicationException(APIStatus.INVALID_ACCESS_TOKEN);
-////        }
-////        return currentUser;
-//      return null;
-//    }
-    
-    public AuthUser getAuthUserFromSession(HttpServletRequest request) {
-        String authToken = request.getHeader(Constant.HEADER_TOKEN);
-        // try to load sessio
-        AuthUser user = userDetailsService.loadUserByAccessToken(authToken);
-        return user;
-    }
+	//
+	// Reponse status
+	//
+	public StatusResponse statusResponse = null;
+
+	// get current user authenticated
+	// public User getcurrentUser() {
+	//// HttpServletRequest request = ((ServletRequestAttributes)
+	// RequestContextHolder.getRequestAttributes()).getRequest();
+	//// String authToken = request.getParameter("auth_token");
+	//// User currentUser = null;//userSessionDao.getUserBySessionID(authToken);
+	//// if (currentUser == null) {
+	//// throw new ApplicationException(APIStatus.INVALID_ACCESS_TOKEN);
+	//// }
+	//// return currentUser;
+	// return null;
+	// }
+
+	public AuthUser getAuthUserFromSession(HttpServletRequest request) {
+		String authToken = request.getHeader(Constant.HEADER_TOKEN);
+		// try to load sessio
+		AuthUser user = userDetailsService.loadUserByAccessToken(authToken);
+		return user;
+	}
 }

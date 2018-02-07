@@ -66,39 +66,37 @@ public class UserAPI extends AbstractBaseController {
 		int type = authRequestModel.getType();
 		if (type == 0) {
 			String google_id = authRequestModel.getPassword();
-            User googler = userService.findUserByGoogleId(google_id);
-            if(googler != null){
-            	UserToken userToken = authService.createUserToken(googler, authRequestModel.isKeepMeLogin());
+			User googler = userService.findUserByGoogleId(google_id);
+			if (googler != null) {
+				UserToken userToken = authService.createUserToken(googler, authRequestModel.isKeepMeLogin());
 				// Create Auth User -> Set to filter config
 				// Perform the security
-				Authentication authentication = new UsernamePasswordAuthenticationToken(googler.getEmail(),
-						google_id);
+				Authentication authentication = new UsernamePasswordAuthenticationToken(googler.getEmail(), google_id);
 				// final Authentication authentication =
 				// authenticationManager.authenticate();
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 				return responseUtil.successResponse(userToken.getToken());
-            } else {
+			} else {
 				// wrong password
 				throw new ApplicationException(APIStatus.ERR_USER_NOT_EXIST);
 			}
-		}else if(type == 1){
+		} else if (type == 1) {
 			String face_id = authRequestModel.getPassword();
-			User  facebooker = userService.findUserByFaceId(face_id);
-			if(facebooker != null){
-            	UserToken userToken = authService.createUserToken(facebooker, authRequestModel.isKeepMeLogin());
+			User facebooker = userService.findUserByFaceId(face_id);
+			if (facebooker != null) {
+				UserToken userToken = authService.createUserToken(facebooker, authRequestModel.isKeepMeLogin());
 				// Create Auth User -> Set to filter config
 				// Perform the security
-				Authentication authentication = new UsernamePasswordAuthenticationToken(facebooker.getEmail(),
-						face_id);
+				Authentication authentication = new UsernamePasswordAuthenticationToken(facebooker.getEmail(), face_id);
 				// final Authentication authentication =
 				// authenticationManager.authenticate();
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 				return responseUtil.successResponse(userToken.getToken());
-            }else {
+			} else {
 				// wrong password
 				throw new ApplicationException(APIStatus.ERR_USER_NOT_EXIST);
 			}
-		}else {
+		} else {
 			if ("".equals(authRequestModel.getUsername()) || "".equals(authRequestModel.getPassword())) {
 				// invalid paramaters
 				throw new ApplicationException(APIStatus.INVALID_PARAMETER);

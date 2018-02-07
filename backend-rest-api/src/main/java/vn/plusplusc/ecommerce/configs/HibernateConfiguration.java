@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @ComponentScan({ "vn.plusplusc.ecommerce.configs" })
 @PropertySource(value = { "classpath:application-dev.properties" })
+//@PropertySource(value = { "classpath:application-pro.properties" })
 public class HibernateConfiguration {
 
     @Autowired

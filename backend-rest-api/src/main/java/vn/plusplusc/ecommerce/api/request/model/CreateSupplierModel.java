@@ -32,8 +32,6 @@ public class CreateSupplierModel {
 
 	private Long supplierId;
 
-	private Long companyId;
-	private List<Long> listCategoriesId;
 	private String name;
 
 	private String description;
@@ -44,20 +42,22 @@ public class CreateSupplierModel {
 
 	private String address;
 
+	private Long type_id;
+	
+	public Long getType_id() {
+		return type_id;
+	}
+
+	public void setType_id(Long type_id) {
+		this.type_id = type_id;
+	}
+
 	public Long getSupplierId() {
 		return supplierId;
 	}
 
 	public void setSupplierId(Long supplierId) {
 		this.supplierId = supplierId;
-	}
-
-	public Long getCompanyId() {
-		return companyId;
-	}
-
-	public void setCompanyId(Long companyId) {
-		this.companyId = companyId;
 	}
 
 	public String getName() {
@@ -98,14 +98,6 @@ public class CreateSupplierModel {
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public List<Long> getListCategoriesId() {
-		return listCategoriesId;
-	}
-
-	public void setListCategoriesId(List<Long> listCategoriesId) {
-		this.listCategoriesId = listCategoriesId;
 	}
 
 }

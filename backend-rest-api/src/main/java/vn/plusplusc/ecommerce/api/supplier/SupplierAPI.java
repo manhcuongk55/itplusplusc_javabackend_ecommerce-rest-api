@@ -174,17 +174,18 @@ public class SupplierAPI extends AbstractBaseController {
 			@RequestBody CreateSupplierModel supplierRequest) {
 		try {
 			Supplier supplier = new Supplier();
-			supplier.setSupplierId(supplierRequest.getSupplierId());
+
 			supplier.setAddress(supplierRequest.getAddress());
-			supplier.setCompanyId(supplierRequest.getCompanyId());
+			supplier.setCompanyId(1L);
 			supplier.setCreateDate(new Date());
 			supplier.setDescription(supplierRequest.getDescription());
 			supplier.setName(supplierRequest.getName());
 			supplier.setStatus(supplierRequest.getStatus());
+			supplier.setType_id(supplierRequest.getType_id());
 			// create Supplier
 			supplierService.save(supplier);
 			// create Supplier categories
-			for (Long categoriesId : supplierRequest.getListCategoriesId()) {
+			/*for (Long categoriesId : supplierRequest.getListCategoriesId()) {
 				SupplierCategoryId supplierCategoryId = new SupplierCategoryId();
 				SupplierCategory supplierCategory = new SupplierCategory();
 				supplierCategoryId.setCategoryId(categoriesId);
@@ -193,7 +194,7 @@ public class SupplierAPI extends AbstractBaseController {
 				System.out.println("id Supplier : " + supplier.getSupplierId().toString());
 				supplierCategoryRepository.save(supplierCategory);
 				// SupplierService.saveSupplierCategory(SupplierCategory);
-			}
+			}*/
 			return responseUtil.successResponse(supplier);
 		} catch (Exception ex) {
 			throw new ApplicationException(APIStatus.CREATE_SUPPLIER_ERROR);
@@ -229,12 +230,12 @@ public class SupplierAPI extends AbstractBaseController {
 	public ResponseEntity<APIResponse> updateSupplier(HttpServletRequest request,
 			@RequestBody CreateSupplierModel supplierRequest) {
 		try {
-			Supplier supplier = supplierService.getSupplierById(supplierRequest.getCompanyId(),
+			Supplier supplier = supplierService.getSupplierById(1L,
 					supplierRequest.getSupplierId());
 			if (supplier != null) {
 				supplier.setSupplierId(supplierRequest.getSupplierId());
 				supplier.setAddress(supplierRequest.getAddress());
-				supplier.setCompanyId(supplierRequest.getCompanyId());
+				supplier.setCompanyId(1L);
 				supplier.setCreateDate(new Date());
 				supplier.setDescription(supplierRequest.getDescription());
 				supplier.setName(supplierRequest.getName());
@@ -249,14 +250,14 @@ public class SupplierAPI extends AbstractBaseController {
 					supplierCategoryRepository.delete(result);
 				}
 				// create new list Supplier categories
-				for (Long categoriesId : supplierRequest.getListCategoriesId()) {
+				/*for (Long categoriesId : supplierRequest.getListCategoriesId()) {
 					SupplierCategoryId supplierCategoryId = new SupplierCategoryId();
 					supplierCategoryId.setCategoryId(categoriesId);
 					supplierCategoryId.setSupplierId(supplier.getSupplierId());
 					SupplierCategory supplierCategory = new SupplierCategory();
 					supplierCategory.setId(supplierCategoryId);
 					supplierCategoryRepository.save(supplierCategory);
-				}
+				}*/
 				return responseUtil.successResponse(supplier);
 			} else {
 				throw new ApplicationException(APIStatus.GET_SUPPLIER_ERROR);
