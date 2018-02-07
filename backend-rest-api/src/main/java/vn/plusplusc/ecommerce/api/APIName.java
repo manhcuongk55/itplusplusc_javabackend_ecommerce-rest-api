@@ -102,4 +102,7 @@ public class APIName {
 	// Upload file API
 	public static final String UPLOAD_API = VERSION + "/upload";
 	public static final String UPLOAD_FILE = "/file";
+	
+	// wallet
+	public static final String WALLET = VERSION + "/wallet";
 }
