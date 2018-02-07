@@ -26,79 +26,59 @@ import vn.plusplusc.ecommerce.exception.ApplicationException;
 import vn.plusplusc.util.FileUtil;
 
 /**
-*
-* @author manhcuong
-*/
+ *
+ * @author manhcuong
+ */
 
 @RestController
 @RequestMapping(APIName.UPLOAD_API)
 public class UploadFileController extends AbstractBaseController {
-    
-    @Value("${application.config.upload.basedir}")
-    private String uploadPath;
-    
-    @RequestMapping(path = APIName.UPLOAD_FILE, method = RequestMethod.POST)
-    public ResponseEntity<APIResponse> uploadFile(
-            HttpServletRequest request,
-            @RequestParam("file_name") String fileName,
-            @RequestParam("file") MultipartFile file,
-            @RequestParam(value = "name", required = false, defaultValue = "") String uploadName,
-            @RequestParam(value = "chunk", required = false) String chunkRequest,
-            @RequestParam(value = "chunks", required = false) String totalChunks
-            ) throws IOException {  
-        
-        // TODO
-        // Get root file Directory Folder
-        String filePathDirectory = new File(uploadPath).isAbsolute() ? uploadPath : request.getServletContext().getRealPath(uploadPath);
-        // Set context path upload
-        // Chunk size for Multipart file upload
-        Integer chunk = 0, chunks = 0, totalChunkIndex;
-        if (null != chunkRequest && !chunkRequest.equals("")) {
-            chunk = Integer.valueOf(chunkRequest);
-        }
-        if (null != totalChunks && !totalChunks.equals("")) {
-            chunks = Integer.valueOf(totalChunks);
-        }
-        //totalChunkIndex
-        totalChunkIndex = chunks - 1;
 
-        if (!file.isEmpty()) {
-            //Create file to storage in server
-            // create file name uploaded
-            String filePathName = uploadName;
-            String fileExtension = FilenameUtils.getExtension(fileName).toLowerCase();
-            if (filePathName == null || "".equals(filePathName)) {
-                filePathName = new Date().getTime() + "." + fileExtension;
-            }
+	@Value("${application.config.upload.basedir}")
+	private String uploadPath;
 
-            // Folder to save file
-            File folder = new File(filePathDirectory);
+	@RequestMapping(path = APIName.UPLOAD_FILE, method = RequestMethod.POST)
+	public ResponseEntity<APIResponse> uploadFile(HttpServletRequest request,
+			@RequestParam("file_name") String fileName, @RequestParam("file") MultipartFile file,
+			@RequestParam(value = "folder", required = false, defaultValue = "") String newfolder) throws IOException {
 
-            // Write file stream to server storage
-            if (!folder.exists()) {
-                // create the named directory.
-                folder.mkdirs();
-            }
-            // New filepath
-            File destFile = new File(folder, filePathName);
-            if (chunk == 0 && destFile.exists()) {
-                destFile.delete();
-                destFile = new File(folder, filePathName);
-            }
-            //  Save Multipart buffer into file
-            FileUtil.appendFile(file.getInputStream(), destFile);
+		// TODO
+		// Get root file Directory Folder
+		String filePathDirectory = new File(uploadPath + "/" + newfolder).isAbsolute() ? (uploadPath + "/" + newfolder)
+				: request.getServletContext().getRealPath(uploadPath + "/" + newfolder);
 
-            // Checking chunk index upload
-            // Completed mutipart upload => save file & response sucess
-            if (chunk.equals(totalChunkIndex) || totalChunkIndex == -1) {
-                // Create database file record
-                return responseUtil.successResponse(filePathName);
-            }else{
-                throw new ApplicationException(APIStatus.ERR_UPLOAD_FILE);
-            }
-        }else{
-            throw new ApplicationException(APIStatus.ERR_UPLOAD_FILE);
-        }
-        
-    }
+		if (!file.isEmpty()) {
+			// Create file to storage in server
+			// create file name uploaded
+			String filePathName = fileName;
+			String fileExtension = FilenameUtils.getExtension(file.getOriginalFilename()).toLowerCase();
+		
+			if (filePathName == null || "".equals(filePathName)) {
+				filePathName = new Date().getTime() + "." + fileExtension;
+			}else{
+				filePathName = filePathName + "." + fileExtension;
+			}
+		
+			// Folder to save file
+			File folder = new File(filePathDirectory);
+
+			// Write file stream to server storage
+			if (!folder.exists()) {
+				// create the named directory.
+				folder.mkdirs();
+			}
+			// New filepath
+			File destFile = new File(folder, filePathName);
+			if (destFile.exists()) {
+				destFile.delete();
+				destFile = new File(folder, filePathName);
+			}
+			// Save Multipart buffer into file
+			FileUtil.appendFile(file.getInputStream(), destFile);
+			return responseUtil.successResponse(filePathName);
+		} else {
+			throw new ApplicationException(APIStatus.ERR_UPLOAD_FILE);
+		}
+
+	}
 }
