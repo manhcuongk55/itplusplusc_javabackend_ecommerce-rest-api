@@ -23,12 +23,11 @@ angular.module('ec-admin.auth', [])
         $scope.submitting = false;
 
         $scope.user = {
-            username: '',
-            password: ''
+            username: 'dmcksclck55@gmail.com',
+            password: '123456c@'
         };
 
         $scope.registerConsoleUser = function () {
-
             $scope.submitting = true;
             Session.consoleLogin({
                 username: $scope.user.username,
@@ -36,12 +35,13 @@ angular.module('ec-admin.auth', [])
             }, function (response) {
 
                 var status = response.status;
+                 alert(" Before Login sucess");
                 if (status === 200) {
-                    
+                    alert("Login sucess");
                     // redirect page
                     $state.go('categories.list');
                 } else {
-
+                    alert("Login error " + response.status);
                     var err = _.find(APIStatus, {status: status});
                     if (err) {
                         toastr.error(Util.translate(err.mgsKey));

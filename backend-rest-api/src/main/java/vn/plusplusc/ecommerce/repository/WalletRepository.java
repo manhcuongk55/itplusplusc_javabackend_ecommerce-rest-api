@@ -8,6 +8,6 @@ import vn.plusplusc.ecommerce.database.model.Wallet;;
 @Repository
 public interface WalletRepository extends JpaRepository<Wallet, Long> {
 
-	Wallet findByUserId(String user_id);
+	Wallet findByUserId(String id);
 
 }

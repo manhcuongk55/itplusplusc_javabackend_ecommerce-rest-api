@@ -39,7 +39,7 @@ import vn.plusplusc.util.MD5Hash;
 
 /**
  *
- * @author Quy Duong
+ * @author manhcuongk55
  */
 @RestController
 @RequestMapping(APIName.AUTH_API)
