@@ -16,7 +16,7 @@ angular.module('marketplace.login', [])
 
                     Session.consoleLogin({
                         username: $scope.email,
-                        password: util.MD5($scope.password),
+                        password: $scope.password,
                         keepMeLogin: 1
                     }, function (response) {
                         var status = response.status;

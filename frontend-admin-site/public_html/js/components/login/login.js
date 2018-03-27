@@ -31,17 +31,17 @@ angular.module('ec-admin.auth', [])
             $scope.submitting = true;
             Session.consoleLogin({
                 username: $scope.user.username,
-                password: Util.MD5($scope.user.password)
+                password: $scope.user.password
             }, function (response) {
 
                 var status = response.status;
-                 alert(" Before Login sucess");
+                 console.log(" Before Login sucess");
                 if (status === 200) {
-                    alert("Login sucess");
+                    console.log("Login sucess");
                     // redirect page
                     $state.go('categories.list');
                 } else {
-                    alert("Login error " + response.status);
+                    console.log("Login error " + response.status);
                     var err = _.find(APIStatus, {status: status});
                     if (err) {
                         toastr.error(Util.translate(err.mgsKey));
